@@ -10,6 +10,7 @@ const _layout = () => {
         <Tabs.Screen name="index" options={{
             tabBarLabel: 'Home',
             tabBarIcon: ({size, color}) => <FontAwesome name='home' size={size} color={color} />,
+            
         }}/>
         <Tabs.Screen name="foods" options={{
             tabBarLabel: 'Food',
