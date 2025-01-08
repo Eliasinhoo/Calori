@@ -4,8 +4,15 @@ import { AnimatedCircularProgress } from 'react-native-circular-progress'
 import colors from '@/constants/Colors'
 import GoalBar from '@/components/GoalBar'
 import TrackBar from '@/components/TrackBar'
+import { useAppSelector } from '../hooks/hooks'
+import { selectTotalCalories } from '../store/selectors'
 
 const page = () => {
+
+    const eaten = useAppSelector(selectTotalCalories);
+    const goal = useAppSelector((state) => state.goal.goal);
+    const percent = (eaten / goal)*100;
+
   return (
     <View style={styles.background}>
      <View style={styles.container}> 
@@ -14,7 +21,7 @@ const page = () => {
             <AnimatedCircularProgress
                 size={200}
                 width={20}
-                fill={70}
+                fill={percent}
                 tintColor={colors.primaryBlue}
                 
                 backgroundColor={colors.lightBlue}

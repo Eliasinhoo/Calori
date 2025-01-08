@@ -1,18 +1,22 @@
-import {View, StyleSheet} from "react-native";
+import {View, StyleSheet, Pressable} from "react-native";
 import colors from "@/constants/Colors";
 import { Tracker } from "./Tracker";
-import { useRouter } from "expo-router";
+import { Link, useRouter } from "expo-router";
+import { useAppSelector } from "@/app/hooks/hooks";
+import { selectTotalCalories } from "@/app/store/selectors";
 
 export default function GoalBar() {
     
-
-      
+    const eaten = useAppSelector(selectTotalCalories);
+    const goal = useAppSelector((state) => state.goal.goal);
 
     return(
         <View style={styles.container}> 
-            <Tracker title='Goal: ' value={300} />
-            <Tracker title='Eaten: ' value={300} />
-            <Tracker title='Remaining: ' value={300} />
+            <Link href='/(modals)/setGoal'>
+                <Tracker title='Goal: ' value={goal} />
+            </Link>
+            <Tracker title='Eaten: ' value={eaten} />
+            <Tracker title='Remaining: ' value={goal-eaten} />
           
         </View>
     )

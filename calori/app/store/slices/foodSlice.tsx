@@ -15,9 +15,9 @@ interface FoodState {
 // Initial state
 const initialState: FoodState = {
   foodList: [
-    { id: 1, name: "Banana", calories: 100 },
-    { id: 2, name: "Apple", calories: 95 },
-    { id: 3, name: "Orange", calories: 62 },
+    // { id: 1, name: "Banana", calories: 100 },
+    // { id: 2, name: "Apple", calories: 95 },
+    // { id: 3, name: "Orange", calories: 62 },
   ],
 };
 
@@ -52,11 +52,14 @@ const foodSlice = createSlice({
     removeFood: (state, action: PayloadAction<number>) => {
       state.foodList = state.foodList.filter((food) => food.id !== action.payload);
     },
+    setFoodList: (state, action: PayloadAction<Food[]>) => {
+      state.foodList = action.payload;
+    }
   },
 });
 
 // Export actions
-export const { addFood, editFood, removeFood } = foodSlice.actions;
+export const { addFood, editFood, removeFood, setFoodList } = foodSlice.actions;
 
 // Export reducer
 export const foodReducer = foodSlice.reducer;

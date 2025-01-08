@@ -1,14 +1,18 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
+
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
-
+import { TouchableOpacity } from 'react-native';
 import { useColorScheme } from '@/components/useColorScheme';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+import colors from '@/constants/Colors';
+import { Ionicons } from '@expo/vector-icons';
+import { setFoodList } from './store/store';
+import { loadFoodList } from './utils/asyncStorageHelpers';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -50,13 +54,46 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
+  const router = useRouter();
+
+  useEffect(() => {
+    const initializeData = async () => {
+      const storedFoodList = await loadFoodList(); // Load data from AsyncStorage
+      store.dispatch(setFoodList(storedFoodList)); // Send to Redux
+    };
+
+    initializeData();
+  }, []);
+
 
   return (
     <Provider store={store}>
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        {/* <Stack.Screen name="modal" options={{ presentation: 'modal' }} /> */}
+        
+        <Stack.Screen
+        name="(modals)/booking"
+        options={{
+          presentation: 'transparentModal',
+          animation: 'fade',
+          headerTransparent: true,
+          // headerTitle: (props) => <ModalHeaderText />,
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => router.back()}
+              style={{
+                backgroundColor: '#fff',
+                borderColor: colors.lightGray,
+                borderRadius: 20,
+                borderWidth: 1,
+                padding: 4,
+              }}>
+              <Ionicons name="close-outline" size={22} />
+            </TouchableOpacity>
+          ),
+        }}
+      />
       </Stack>
     </ThemeProvider>
     </Provider>

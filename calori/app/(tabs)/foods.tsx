@@ -2,6 +2,8 @@ import React from "react";
 import { FlatList, Text, View, StyleSheet, Button } from "react-native";
 import { useAppDispatch,useAppSelector } from "../hooks/hooks";
 import { removeFood, addFood } from "../store/store";
+import colors from "@/constants/Colors";
+import { Link } from "expo-router";
 
 const FoodList = () => {
   const dispatch = useAppDispatch();
@@ -11,10 +13,12 @@ const FoodList = () => {
 
   // Render a single food item
   const renderItem = ({ item }: { item: { id: number; name: string; calories: number } }) => (
+    <View style={styles.organizer}>
     <View style={styles.listItem}>
       <Text style={styles.name}>{item.name}</Text>
       <Text style={styles.calories}>{item.calories} kcal</Text>
       <Button title="Remove" onPress={() => dispatch(removeFood(item.id))} />
+    </View>
     </View>
   );
 
@@ -28,13 +32,10 @@ const FoodList = () => {
         ItemSeparatorComponent={() => <View style={styles.separator} />}
       />
 
-      {/* Button to add a new food item */}
-      <Button
-        title="Add Food"
-        onPress={() =>
-          dispatch(addFood({ name: "Strawberry", calories: 32 }))
-        }
-      />
+      
+      <Link href={'/(modals)/addFood'} asChild>
+          <Button title="add Food" color={colors.primaryBlue} />
+      </Link>
     </View>
   );
 };
@@ -50,6 +51,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
     textAlign: "center",
+    fontFamily: 'mon-sb'
   },
   listItem: {
     padding: 15,
@@ -64,14 +66,19 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 18,
     fontWeight: "bold",
+    fontFamily: 'mon-sb'
   },
   calories: {
     fontSize: 14,
     color: "#666",
+    fontFamily: 'mon-sb'
   },
   separator: {
     height: 10,
   },
+  organizer: {
+    flexDirection: 'row'
+  }
 });
 
 export default FoodList;
