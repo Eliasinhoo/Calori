@@ -34,7 +34,11 @@ const FoodList = () => {
 
       
       <Link href={'/(modals)/addFood'} asChild>
-          <Button title="add Food" color={colors.primaryBlue} />
+          <Button title="Manual add" color={colors.primaryBlue} />
+      </Link>
+      <View style={{padding: 1}}></View>
+      <Link href={'/(modals)/addFoodSmart'} asChild>
+          <Button title="Smart add" color={colors.primaryBlue} />
       </Link>
     </View>
   );

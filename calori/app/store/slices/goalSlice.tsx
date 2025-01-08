@@ -5,7 +5,7 @@ interface goalState {
 }
 
 const initialState: goalState = {
-    goal : 2500,
+    goal : 0,
 }
 
 const goalSlice = createSlice({

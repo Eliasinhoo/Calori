@@ -21,7 +21,7 @@ const page = () => {
             <AnimatedCircularProgress
                 size={200}
                 width={20}
-                fill={percent}
+                fill={goal == 0 ? 0 :percent}
                 tintColor={colors.primaryBlue}
                 
                 backgroundColor={colors.lightBlue}
@@ -32,7 +32,7 @@ const page = () => {
                 {
                 (fill) => (
                     <Text style={styles.text}>
-                    { Intl.NumberFormat('en-US').format(Math.round(fill)) }
+                    { Intl.NumberFormat('en-US').format(Math.round(fill)) }%
                     </Text>
                 )
                 }

@@ -9,6 +9,9 @@ export default function GoalBar() {
     
     const eaten = useAppSelector(selectTotalCalories);
     const goal = useAppSelector((state) => state.goal.goal);
+    function isNegative(number: number) {
+        return number < 0;
+      }
 
     return(
         <View style={styles.container}> 
@@ -16,7 +19,7 @@ export default function GoalBar() {
                 <Tracker title='Goal: ' value={goal} />
             </Link>
             <Tracker title='Eaten: ' value={eaten} />
-            <Tracker title='Remaining: ' value={goal-eaten} />
+            <Tracker title='Remaining: ' value={isNegative(goal-eaten)? 0: goal-eaten} />
           
         </View>
     )
