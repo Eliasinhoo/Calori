@@ -8,7 +8,8 @@ import { Alert } from 'react-native';
 
 const Page = () => {
   const [name, setName] = useState('');
-  const [calories, setCalories] = useState('')
+  const [amount, setAmount] = useState('')
+  const [calories, setCalories] = useState(0);
   const router = useRouter();
 
   const dispatch = useAppDispatch();
@@ -18,7 +19,7 @@ const Page = () => {
 
   async function getNutrition() {
     try {
-      const response = await fetch('https://api.calorieninjas.com/v1/nutrition?query=' + encodeURIComponent(name) + '%20' + encodeURIComponent(calories), {
+      const response = await fetch('https://api.calorieninjas.com/v1/nutrition?query=' + encodeURIComponent(name + " " + amount), {
         method: 'GET',
         headers: {
           'X-Api-Key': 'q9a1CqIZfmyItntVY+/rEw==FK14j3Voy0ME6v8a', // Replace with your actual API key
@@ -31,31 +32,39 @@ const Page = () => {
       }
   
       const result = await response.json();
-      console.log(`Name:, ${result.items[0].name}`);
-      console.log(`Calories:, ${result.items[0].calories}`);
-      console.log(`protein_g:, ${result.items[0].protein}`);
-      console.log(`carbohydrates_total_g:, ${result.items[0].carbohydrates_total_g}`);
-      console.log(`fat_total_g:, ${result.items[0].fat_total_g}`);
-      setName(result.items[0].name);
-      setCalories(result.items[0].calories);
+      console.log(`Name: ${result.items[0].name}`);
+      console.log(`Calories: ${result.items[0].calories}`);
+      console.log(`protein_g: ${result.items[0].protein}`);
+      console.log(`carbohydrates_total_g: ${result.items[0].carbohydrates_total_g}`);
+      console.log(`fat_total_g: ${result.items[0].fat_total_g}`);
+      // setName(result.items[0].name);
+      // setCalories(result.items[0].calories);
+      return (
+        {
+          name: result.items[0].name,
+          calories: result.items[0].calories
+        }
+      )
+      
     } catch (error: any) {
       console.error('Error:', error.message);
     }
   }
 
 
-  const handlePress = () => {
-    if (!name || !calories) {
+  const handlePress = async () => {
+    if (!name || !amount) {
       // If either is empty, show an alert and return
       Alert.alert("Please fill in all inputs")
       return;
     }
 
-    getNutrition();
+    const asyncval = await getNutrition();
 
-    dispatch(addFood({ name: name, calories: parseInt(calories) }))
+    dispatch(addFood({ name: asyncval?.name, calories: asyncval?.calories }))
+
     setName('')
-    setCalories('')
+    setAmount('')
 
     router.push('/(tabs)/foods');
   }
@@ -64,8 +73,8 @@ const Page = () => {
     <View>
       <Text>Name:</Text>
       <TextInput placeholderTextColor={colors.darkGray} placeholder='Enter Name' value={name} onChangeText={setName}></TextInput>
-      <Text>Calories: </Text>
-      <TextInput placeholderTextColor={colors.darkGray} placeholder='Enter Calories ' keyboardType="numeric" value={calories} onChangeText={setCalories}></TextInput>
+      <Text>Amount: </Text>
+      <TextInput placeholderTextColor={colors.darkGray} placeholder='Enter Amount ' keyboardType="numeric" value={amount} onChangeText={setAmount}></TextInput>
       <TouchableOpacity onPress={handlePress}>
         <Text>Save</Text>
       </TouchableOpacity>

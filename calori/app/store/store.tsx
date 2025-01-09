@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { foodReducer } from "./slices/foodSlice";
 import { addFood, removeFood, editFood, setFoodList } from "./slices/foodSlice";
-import { saveFoodList } from "../utils/asyncStorageHelpers";
+import { saveFoodList, saveGoal } from "../utils/asyncStorageHelpers";
 import { setGoal } from "./slices/goalSlice";
 import { goalReducer } from "./slices/goalSlice";
+import { Food } from "./slices/foodSlice";
 
 
 export const store = configureStore({
@@ -13,10 +14,24 @@ export const store = configureStore({
     },
 });
 
+let prevFoodlist: Food[] =  [];
+let prevGoal = 0;
+
 
 store.subscribe(() => {
+
+    
     const state = store.getState();
-    saveFoodList(state.food.foodList);
+
+    if (state.food.foodList !== prevFoodlist){
+        saveFoodList(state.food.foodList);
+        prevFoodlist = state.food.foodList;
+    }
+    
+    if (state.goal.goal !== prevGoal){
+        saveGoal(state.goal.goal);
+        prevGoal = state.goal.goal;
+    }
 })
 
 

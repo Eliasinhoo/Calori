@@ -8,11 +8,11 @@ import 'react-native-reanimated';
 import { TouchableOpacity } from 'react-native';
 import { useColorScheme } from '@/components/useColorScheme';
 import { Provider } from 'react-redux';
-import { store } from './store/store';
+import { setGoal, store } from './store/store';
 import colors from '@/constants/Colors';
 import { Ionicons } from '@expo/vector-icons';
 import { setFoodList } from './store/store';
-import { loadFoodList } from './utils/asyncStorageHelpers';
+import { loadFoodList, loadGoal } from './utils/asyncStorageHelpers';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -58,11 +58,15 @@ function RootLayoutNav() {
 
   useEffect(() => {
     const initializeData = async () => {
+
+      const storedGoal = await loadGoal();
       const storedFoodList = await loadFoodList(); // Load data from AsyncStorage
+      store.dispatch(setGoal(storedGoal));
       store.dispatch(setFoodList(storedFoodList)); // Send to Redux
     };
 
     initializeData();
+
   }, []);
 
 

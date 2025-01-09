@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Define a single food item type
-type Food = {
+export type Food = {
   id: number; // Unique identifier
   name: string;
   calories: number;
@@ -10,6 +10,7 @@ type Food = {
 // Define the initial state type
 interface FoodState {
   foodList: Food[];
+  isHydrated: boolean;
 }
 
 // Initial state
@@ -19,6 +20,7 @@ const initialState: FoodState = {
     // { id: 2, name: "Apple", calories: 95 },
     // { id: 3, name: "Orange", calories: 62 },
   ],
+  isHydrated: false,
 };
 
 // Create the food slice
