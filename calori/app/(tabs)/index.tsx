@@ -12,6 +12,7 @@ const page = () => {
     const eaten = useAppSelector(selectTotalCalories);
     const goal = useAppSelector((state) => state.goal.goal);
     const percent = (eaten / goal)*100;
+    const temp = 1;
 
   return (
     <View style={styles.background}>
