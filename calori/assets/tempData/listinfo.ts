@@ -35,3 +35,24 @@ export const info = [
         date: 'Su'
     },
 ]
+
+export const addInfo = [
+    {
+        id: 1,
+        type: "Breakfast",
+        calories: "243",
+        emoji: "🥐"
+    },
+    {
+        id: 2,
+        type: "Lunch",
+        calories: "521",
+        emoji: "🥪"
+    },
+    {
+        id: 3,
+        type: "Dinner",
+        calories: "702",
+        emoji: "🍕"
+    }
+]

@@ -25,6 +25,7 @@ const _layout = () => {
             tabBarLabel: 'Profile',
             tabBarIcon: ({size, color}) => <Ionicons name='person-circle-sharp' size={size} color={color} />,
         }}/>
+        
     </Tabs>
   )
 }

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Image } from 'react-native'
 import React from 'react'
 import { AnimatedCircularProgress } from 'react-native-circular-progress'
 import colors from '@/constants/Colors'
@@ -7,6 +7,7 @@ import TrackBar from '@/components/TrackBar'
 import { useAppSelector } from '../hooks/hooks'
 import { selectTotalCalories } from '../store/selectors'
 import AntDesign from '@expo/vector-icons/AntDesign';
+import AddBar from '@/components/AddBar'
 
 
 const page = () => {
@@ -55,6 +56,10 @@ const page = () => {
                 </View>
 
                 <TrackBar />
+                <View>
+                    <AddBar />
+                    {/* <Image source={require('../assets/images/hungry-emoticon.png')}/> */}
+                </View>
             </View>
         </View>
 
@@ -120,9 +125,9 @@ const styles = StyleSheet.create({
     dateRow: {
         flexDirection: 'row',
         justifyContent: 'space-between', // space out content across axis
-        alignItems: 'center', 
-        width: '100%', 
-        paddingHorizontal: 16, 
+        alignItems: 'center',
+        width: '100%',
+        paddingHorizontal: 16,
     },
     centerContent: {
         flexDirection: 'row',
