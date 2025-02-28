@@ -3,8 +3,8 @@ const colors = {
   primaryWhite: "#FFFFFF", // Main app color (white)
   offWhite: "#F9FAFB",     // Slightly grayish white for backgrounds
   lightGray: "#E0E0E0",    // Light gray for borders, dividers, or subtle elements
-  darkGray: "#757575",     // Dark gray for text or secondary elements
-
+  darkGray: "#5E5D5E",     // Dark gray for text or secondary elements
+  borderGray: "rgba(250,251,251,255)",
   // Secondary colors (Blue-focused accents)
   primaryBlue: "#1E88E5",  // Blue for highlights, buttons, and accents
   lightBlue: "#BBDEFB",    // Light blue for backgrounds or hover states

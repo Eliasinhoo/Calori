@@ -6,22 +6,26 @@ import colors from '@/constants/Colors';
 
 const TrackBar = () => {
 
-  const renderlist = info.map((item) => (
-    <View key={item.id} style={styles.listContainer}>
-        
-        <View style={styles.verticalTransform}>
-            <Progress.Bar progress={item.progress/100} width={50} height={10} />
+    const renderlist = info.map((item) => (
+        <View key={item.id} style={styles.listContainer}>
+
+            <View style={styles.verticalTransform}>
+                <Progress.Bar progress={item.progress / 100} width={50} height={10} borderColor={colors.primaryWhite}/>
+            </View>
+            <Text style={styles.text}>{item.date}</Text>
+
         </View>
-        <Text style={styles.text}>{item.date}</Text>
-        
-    </View>
-  ));
-    
-  return (
-    <View style={styles.container}>
-        {renderlist}
-    </View>
-  )
+    ));
+
+    return (
+        <View style={styles.box}>
+            <View style={styles.weeklyText}>Weekly Progress</View>
+            <View style={styles.container}>
+                
+                {renderlist}
+            </View>
+        </View>
+    )
 }
 
 export default TrackBar
@@ -33,21 +37,54 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         paddingTop: 24,
         padding: 4,
-        borderRadius: 8,
-        backgroundColor: colors.primaryWhite,
-        borderColor: colors.lightGray,
-        borderWidth: 1,
-        
+        // borderRadius: 8,
+        // backgroundColor: colors.primaryWhite,
+        // borderColor: colors.lightGray,
+        // borderWidth: 1,
+
     },
     verticalTransform: {
         transform: [{ rotate: "-90deg" }], // Rotate the progress bar
     },
     listContainer: {
         flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+
         flex: 1,
+        paddingTop: 10,
+        marginTop: 10,
     },
     text: {
-        fontFamily: 'mon-sb'
+        fontFamily: 'mon-sb',
+        paddingTop: 20,
     },
-    
+    weeklyText: {
+        fontFamily: 'mon-sb',
+        paddingLeft: 10,
+        textAlign: 'left',
+        width: '100%',
+    },
+    box: {
+        borderRadius: 8,
+        backgroundColor: colors.primaryWhite,
+        borderColor: colors.borderGray,
+        borderWidth: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        paddingVertical: 20,
+        padding: 4,
+
+        // Android
+        elevation: 5,
+
+        // iOS Shadow
+        shadowColor: '#000',  // Shadow color
+        shadowOffset: { width: 0, height: 2 }, // Shadow position (X, Y)
+        shadowOpacity: 0.2,  // Shadow transparency
+        shadowRadius: 4,  // Blur effect
+    },
+
 })

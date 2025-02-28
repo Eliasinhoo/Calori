@@ -3,6 +3,7 @@ import React from 'react'
 import { Tabs } from 'expo-router'
 import colors from '@/constants/Colors'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 
 const _layout = () => {
   return (
@@ -15,6 +16,10 @@ const _layout = () => {
         <Tabs.Screen name="foods" options={{
             tabBarLabel: 'Food',
             tabBarIcon: ({size, color}) => <Ionicons name='fast-food-sharp' size={size} color={color} />,
+        }}/>
+        <Tabs.Screen name="recipes" options={{
+            tabBarLabel: 'Recipes',
+            tabBarIcon: ({size, color}) => <FontAwesome5 name="utensils" size={size} color={color} />,
         }}/>
         <Tabs.Screen name="profile" options={{
             tabBarLabel: 'Profile',
