@@ -2,37 +2,44 @@ export const info = [
     {
         id: 1,
         progress: 50,
-        date: 'Mo'
+        day: 'Mo',
+        date: '15',
     },
     {
         id: 2,
         progress: 60,
-        date: 'Tu'
+        day: 'Tu',
+        date: '16',
     },
     {
         id: 3,
         progress: 90,
-        date: 'We'
+        day: 'We',
+        date: '17',
     },
     {
         id: 4,
         progress: 90,
-        date: 'Th'
+        day: 'Th',
+        date: '18',
     },
     {
         id: 5,
         progress: 70,
-        date: 'Fr'
+        day: 'Fr',
+        date: '19',
     },
     {
         id: 6,
         progress: 60,
-        date: 'Sa'
+        day: 'Sa',
+        date: '20',
     },
     {
         id: 7,
         progress: 20,
-        date: 'Su'
+        day: 'Su',
+        date: '21',
     },
 ]
 
@@ -40,19 +47,19 @@ export const addInfo = [
     {
         id: 1,
         type: "Breakfast",
-        calories: "243",
+        calories: "243 Cal",
         emoji: "🥐"
     },
     {
         id: 2,
         type: "Lunch",
-        calories: "521",
+        calories: "521 Cal",
         emoji: "🥪"
     },
     {
         id: 3,
         type: "Dinner",
-        calories: "702",
+        calories: "702 Cal",
         emoji: "🍕"
     }
 ]

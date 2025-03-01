@@ -10,9 +10,10 @@ const TrackBar = () => {
         <View key={item.id} style={styles.listContainer}>
 
             <View style={styles.verticalTransform}>
-                <Progress.Bar progress={item.progress / 100} width={50} height={10} borderColor={colors.primaryWhite}/>
+                <Progress.Bar progress={item.progress / 100} width={50} height={10} borderColor={colors.primaryWhite} color={colors.primaryBlue} />
             </View>
-            <Text style={styles.text}>{item.date}</Text>
+            <Text style={styles.text}>{item.day}</Text>
+            <Text style={styles.dateText}>{item.date}</Text>
 
         </View>
     ));
@@ -22,6 +23,7 @@ const TrackBar = () => {
             <View style={styles.weeklyText}>Weekly Progress</View>
             <View style={styles.container}>
                 {renderlist}
+                <View style={styles.overlayLine} />
             </View>
         </View>
     )
@@ -58,6 +60,9 @@ const styles = StyleSheet.create({
         fontFamily: 'mon-sb',
         paddingTop: 20,
     },
+    dateText: {
+        fontFamily: 'mon-sb',
+    },
     weeklyText: {
         fontFamily: 'mon-sb',
         paddingLeft: 10,
@@ -75,6 +80,7 @@ const styles = StyleSheet.create({
         width: '100%',
         paddingVertical: 20,
         padding: 4,
+        marginTop: 10,
 
         // Android
         elevation: 5,
@@ -85,5 +91,15 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.2,  // Shadow transparency
         shadowRadius: 4,  // Blur effect
     },
+    overlayLine: {
+        position: 'absolute',
+        top: '45%', // Center the line vertically
+        left: 0,
+        right: 0,
+        height: 2, // Thickness of the line
+        borderBottomWidth: 2,
+        borderColor: colors.darkGray,
+        borderStyle: 'dotted',
+      },
 
 })

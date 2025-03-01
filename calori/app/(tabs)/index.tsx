@@ -8,6 +8,8 @@ import { useAppSelector } from '../hooks/hooks'
 import { selectTotalCalories } from '../store/selectors'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import AddBar from '@/components/AddBar'
+import { SafeAreaView } from 'react-native-safe-area-context'
+
 
 
 const page = () => {
@@ -18,7 +20,8 @@ const page = () => {
     const temp = 1;
 
     return (
-        <View style={styles.background}>
+        
+        <SafeAreaView style={styles.background}>
             <View style={styles.container}>
                 <View style={styles.dateRow}>
                     <AntDesign name="left" size={24} color="black" />
@@ -56,12 +59,20 @@ const page = () => {
                 </View>
 
                 <TrackBar />
-                <View>
+
+                <View style={styles.horizontal}>
                     <AddBar />
-                    {/* <Image source={require('../assets/images/hungry-emoticon.png')}/> */}
+                    <View style={styles.imageBox}>
+                        <Image
+                            source={require('../../assets/images/Pasta.jpg')}
+                            style={{ width: 200, height: 200}}
+                            resizeMode="cover" // Crop the image to fit the container
+                        />
+                    </View>
                 </View>
+
             </View>
-        </View>
+        </SafeAreaView>
 
     )
 }
@@ -76,6 +87,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         gap: 10,
+        marginTop: 42
 
     },
     text: {
@@ -133,6 +145,34 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         gap: 4,
+    },
+    horizontal: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 10
+    },
+    imageBox: {
+        borderRadius: 8,
+        backgroundColor: colors.primaryWhite,
+        borderColor: colors.borderGray,
+        borderWidth: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 10,
+
+        
+        
+
+        // Android
+        elevation: 5,
+
+        // iOS Shadow
+        shadowColor: '#000',  // Shadow color
+        shadowOffset: { width: 0, height: 2 }, // Shadow position (X, Y)
+        shadowOpacity: 0.2,  // Shadow transparency
+        shadowRadius: 4,  // Blur effect
     },
 
 

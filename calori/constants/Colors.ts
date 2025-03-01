@@ -1,7 +1,7 @@
 const colors = {
   // Primary colors (White-focused theme)
   primaryWhite: "#FFFFFF", // Main app color (white)
-  offWhite: "#F9FAFB",     // Slightly grayish white for backgrounds
+  offWhite: "#f9fafb",     // Slightly grayish white for backgrounds
   lightGray: "#E0E0E0",    // Light gray for borders, dividers, or subtle elements
   darkGray: "#5E5D5E",     // Dark gray for text or secondary elements
   borderGray: "rgba(250,251,251,255)",
